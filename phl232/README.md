@@ -12,9 +12,11 @@ For our project, we wrote a Python package (**portfolioFactory**) that streamlin
 easily creates [**momentum**][momentum] strategies (i.e. buy the winners) with different horizons as well ask explore new trading signals.
  
 As discussed, we created 3 examples that make use of our package. To run the examples, you can enter the following command in the terminal: 
+
 '''
 python example1.py
 '''
+
 Data for examples are in /ExampleData. 
 
 ## Main Features
