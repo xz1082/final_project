@@ -19,6 +19,25 @@ python example1.py
 
 The data for the examples can be found in /ExampleData. The examples will return a series of plots showing the risk/return characteristics of the specified strategy. Additionally, the example will return a portoflio object. 
 
+### Example I
+
+Suppose an investor has the idea that stocks that have performed well will continue to perform well. To test this strategy, the investor uses the the following procedure:
+
+- At the end of each year, look back over the previous *1 Year* and buy the top *n* stocks as ranked by *1 Year* return
+- Hold these *n* stocks for *1 Year*
+- Repeat the sorting procedure and form a new portfolio every *December*
+
+To implement this using **portfolioFactory**, the config file would look like:
+
+```
+univerpath:
+c: 
+```
+
+### Example II
+
+### Example III
+
 [momentum]: http://faculty.chicagobooth.edu/tobias.moskowitz/research/JF_12021_TMcomments.pdf
 
 ## Dependencies
