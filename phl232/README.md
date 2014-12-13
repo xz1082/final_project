@@ -11,7 +11,7 @@ Israel Malkin (IM965)
 
 For our project, we wrote a Python package (**portfolioFactory**) that streamlines the process for building cross-sectional trading strategies/factors. In our examples, we show how you can easily use **portfolioFactory** to implement [**momentum**][momentum] strategies (i.e. buy the winners) with different horizons and selection criteria. In addition, we include an example to show how this approach can be extened to build generic cross-sectional strategies.
  
-As discussed, we created 3 examples that make use of our package. Examples can be run from the main directory. For example: 
+As discussed, we created 3 examples that make use of our package. Examples can be run via the terminal from the main directory. For example: 
 
 ```
 python example1.py
@@ -30,7 +30,7 @@ Our project was tested to work using Python 2.7 on both Windows 8 and Ubuntu 15.
 - [matplotlib](http://matplotlib.sourceforge.net/): for plotting
 - [Pandas](http://pandas.pydata.org/): 0.15.1
 - [TkInter](http://tkinter.unpythonic.net/wiki/How_to_install_Tkinter): Used for GUI. This package should be built in. 
-- [Seaborn](http://stanford.edu/~mwaskom/software/seaborn/): Plotting
+- [Seaborn](http://stanford.edu/~mwaskom/software/seaborn/): Rerquired for plotting. Using pip, Seaborn can be installed using the following command:
 
 	```
 	pip install seaborn
