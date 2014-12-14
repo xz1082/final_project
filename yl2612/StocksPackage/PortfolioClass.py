@@ -167,8 +167,8 @@ class Portfolio():
         plt.scatter(only_stocks_percentage_change_df.std(), only_stocks_percentage_change_df.mean())
         plt.ylabel('Expected Return')
         plt.xlabel('Risk')
-        for label, x, y in zip(only_stocks_percentage_change_df.columns, only_stocks_percentage_change_df.std(), only_stocks_percentage_change_df.mean()):
-            plt.annotate(label, xy = (x, y),xytext = (10, 10), textcoords = 'offset points', horizontalalignment = 'right', verticalalignment = 'down', 
+        for stock_symbol, risk, ret in zip(only_stocks_percentage_change_df.columns, only_stocks_percentage_change_df.std(), only_stocks_percentage_change_df.mean()):
+            plt.annotate(stock_symbol, xy = (risk, ret),xytext = (10, 10), textcoords = 'offset points', horizontalalignment = 'right', verticalalignment = 'down', 
                          arrowprops = dict(arrowstyle = '<-'), bbox = dict(boxstyle = 'sawtooth', facecolor='red', alpha = 0.2)) #annotate each stock on the plot
         plt.title('Expected return versus risk')
         formatter = FuncFormatter(to_percent)
