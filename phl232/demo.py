@@ -17,6 +17,9 @@ def main():
     
     '''Main is a demonstration that shows the functionality of portfolioFactory
     
+    This should be run in Pytyon's interactive mode. Otherwise, plotting may not work
+    due to matplotlib's blocking behavior.
+    
     Example: strategy = main()    
     
     on the first screen select ./ExampleFiles/assetReturnsData_SELECTME
@@ -47,7 +50,7 @@ def main():
     Strategy object
     
     '''
-       
+      
     # Select asset return data and create niverse
     assetReturnsPath = getFileLocation.getFileLocation('Please select the Return File')
     demoUniverse = universe.universe('testUniverse', assetReturnsPath)
@@ -61,7 +64,7 @@ def main():
     
     # Plot risk/return metrics
     reporting.plotRollingReturn(demoStrategy.strategyReturns, windowInput)
-    reporting.plotWithStats(demoStrategy.strategyReturns, startYear, endYear)
+    reporting.plotWithStats(demoStrategy.strategyReturns, startYear, endYear)        
     
     return demoStrategy    
         

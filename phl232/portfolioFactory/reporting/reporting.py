@@ -1,5 +1,5 @@
 """
-reporting is a module that contains a collection of functions to make plots
+reporting is a module that contains a collection of functions to make plots for demo.py
 
 Author: Peter Li and Israel Malkin
 
@@ -15,9 +15,6 @@ import seaborn as sns
 
 import portfolioFactory.metrics.retMetrics as retMetrics
 import sys
-
-#np.random.seed(sum(map(ord, "aesthetics")))
-
 
 current_palette = sns.color_palette("Blues")
 
@@ -42,8 +39,8 @@ def plotRollingReturn(inputData, windowArray):
         
         data = utils.processData(inputData)
         
-        fig = plt.figure(figsize=(16, 8))
-        fig.patch.set_facecolor('white') 
+        fig1 = plt.figure(figsize=(16, 8))
+        fig1.patch.set_facecolor('white') 
     
         # Create axis for subplots
         ax1 = plt.subplot2grid((4,3), (0,0), colspan = 2)
@@ -79,9 +76,7 @@ def plotRollingReturn(inputData, windowArray):
         # set title
         ax1.set_title('Rolling Returns', fontsize = 15)
         ax5.set_title('Distribution of Rolling Returns', fontsize = 15)        
-    
-        plt.show()
-        
+            
     else: 
         raise customExceptions.invalidInput('Invalid Horizon: Expect list of 4 window values')
         
@@ -118,8 +113,7 @@ def plotWithStats(series,startyear,endyear):
     metric2 = round(riskMetrics.maxDrawdown(measure),2)
     
     
-    #plot 
-    
+    #plot     
     firstObs = measure.dropna().index[0].year
 
     text_date = '01/01/'+str(firstObs + 1)
@@ -143,14 +137,22 @@ def plotWithStats(series,startyear,endyear):
     riskText = (metric3 + '\n' + metric1 + '\n' + metric2)
     returnsText = (metric4 + '\n' + metric5 + '\n' + metric6 + '\n' + metric7)             
     
-#    plt.text(text_date, text_y, 'VaR='+str(metric1)+', Max Draw='+str(metric2),fontsize=15)
-
     plt.text(text_date, text_y, riskText + '\n\n\n' + returnsText,fontsize=15)
 
-#    plt.grid(True)
-    plt.show()
+    plt.show(block = False)
+    
+    return
 
 def getUserPlottingParameters():
+    ''' Method to get user input for demo plotting
+    
+    This method will prompt the user fof the following input:
+
+        - Start Year (int): start year for cum. ret. plot
+        - End Year (int): end year for cum. ret. plot 
+        - Rolling Analysis Window (list for 4 ints): windows sizes for rolling analysis
+    
+    '''
     
     inputCheck = False  
     
@@ -191,8 +193,6 @@ def getUserPlottingParameters():
                 
     return startYear, endYear, windowInput
             
-
-
 def main():
     pass
 
