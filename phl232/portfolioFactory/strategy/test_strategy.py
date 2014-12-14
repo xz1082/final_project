@@ -1,5 +1,3 @@
-
-
 """
 test_strategy is a module to run unit tests for strategy Class
 

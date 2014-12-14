@@ -1,5 +1,5 @@
 """
-The universe module contains the universe class. 
+The universe module defines the universe class. 
 
 Author: Peter Li
 

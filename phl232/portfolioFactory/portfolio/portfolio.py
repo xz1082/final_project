@@ -1,4 +1,3 @@
-
 """
 Portfolio is a module that defines the portfolio class
 
@@ -129,11 +128,3 @@ class portfolio(object):
         
         return weightsTemplate
             
-
-                
-
-        
-        
-
-
-      

@@ -1,15 +1,23 @@
-# -*- coding: utf-8 -*-
 """
-Created on Tue Dec  9 13:17:53 2014
+This module contains user definied exceptions
 
-Author: Peter Li and Israel
+Author: Peter Li and Israel Malkin
 """
+
+
+###################################################
+# Exceptions raised by universe and metrics modules
+###################################################
 
 class badData(Exception):
     pass
 
 class invalidInput(Exception):
     pass
+
+###################################################
+# Exceptions raised by strategy during init
+###################################################
 
 class invalidParameterPath(Exception) :
         def __init__(self,msg='') :
@@ -73,6 +81,8 @@ class notEnoughSignals(Exception) :
             
             
 ###################################################
+# Exceptions raised by portfolio during init
+###################################################
             
 class notListError(Exception) :
         def __init__(self,msg='') :
@@ -104,7 +114,9 @@ class duplicatesError(Exception) :
         def __str__(self):
             return repr(self.m)
             
-######################################################
+###################################################
+# Exceptions raised calcRollingReturn
+###################################################
             
 class notDFError(Exception) :
         def __init__(self,msg='') :

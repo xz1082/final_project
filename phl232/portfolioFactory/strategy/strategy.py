@@ -1,11 +1,8 @@
-
 """
 Strategy is a module that defines the strategy class
 
 Author: Israel Malkin
 """
-
-
 
 import pandas as pd
 import numpy as np
@@ -13,7 +10,6 @@ import warnings
 import portfolioFactory
 from ..utils import customExceptions as customExceptions
 from ..utils.utils import setParameters
-
 
 class strategy(object):
     ''' Strategy is a class to represent investment strategies. 

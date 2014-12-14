@@ -1,5 +1,3 @@
-
-
 """
 test_portfolio is a module to run unit tests for portfolio Class
 

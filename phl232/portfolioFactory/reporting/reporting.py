@@ -1,11 +1,9 @@
 """
 reporting is a module that contains a collection of functions to make plots
 
-Author: Peter Li
+Author: Peter Li and Israel Malkin
 
 """
-
-
 
 from ..utils import utils as utils
 from ..utils import customExceptions as customExceptions

@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 """
-Created on Mon Dec  8 22:09:49 2014
+utils contains general purpose functions used throughout portfolioFactory
 
-Author: Peter Li and Israel
+Author: Peter Li and Israel Malkin
 """
 
 import numpy as np
