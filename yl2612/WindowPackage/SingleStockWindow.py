@@ -92,7 +92,7 @@ class SingleStockWindow:
 
 	def plot(self, stock_name, start_date, end_date):
 		'''
-		plot the stock closed prices
+		plot the stock closed prices and daily volume.
 		'''
 		try:
 			CI.IsInternetOn()

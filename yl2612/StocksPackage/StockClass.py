@@ -12,6 +12,7 @@ from matplotlib.ticker import FuncFormatter
 from MarketClass import *
 from Utilities.Exceptions import *
 from Utilities.Inputfunctions import *
+from pylab import *
 
 
 class Stock():
@@ -44,6 +45,7 @@ class Stock():
             endtime(datatime): the end time of date range 
             dataframe(pandas.dataframe): extract the data from the yahoo finance
             close_price(pandas.series): the column 'Adj Close' in the dataframe
+            volume(pandas.series): the column 'Volume' in the dataframe
         '''
         
         if IsEmptyInput(stock,start,end):
@@ -68,6 +70,7 @@ class Stock():
                 
         self.dataframe = web.DataReader(stock,'yahoo',start,end)
         self.close_price = self.dataframe['Adj Close']
+        self.volume = self.dataframe['Volume']
         
     def change_price_percent(self):
         """
@@ -83,15 +86,25 @@ class Stock():
     
     def plot_close_price(self):
         """
-        Plot the stock close price over time.
+        Plot the stock close price and daily volume over time in subplots.
         """
         fig = plt.figure()
-        self.close_price.plot(color = 'b',label = self.stock)
-        plt.legend()
-        plt.xticks(rotation=45)
-        plt.title('The Close Price of {} '.format(self.stock))
-        plt.xlabel('Date Time')
-        plt.ylabel('Close Price')
+        
+        ax1 = subplot(211)
+        self.close_price.plot(ax=ax1,label = self.stock)
+        ax1.legend(loc=4)
+        ax1.set_title('The Close Price of {} '.format(self.stock))
+        ax1.set_xlabel('Date Time')
+        ax1.set_ylabel('Close Price')
+        
+        ax2 = subplot(212)
+        self.volume.plot(kind='bar',ax=ax2)
+        ax2.get_xaxis().set_ticks([])
+        ax2.set_title('The Volume of {} '.format(self.stock))
+        ax2.set_xlabel('Date Time')
+        ax2.set_ylabel('Volume')
+        
+        plt.tight_layout(pad=3.0, w_pad=2.0, h_pad=1.0)
         plt.show()
     
 
@@ -103,7 +116,7 @@ class Stock():
         self.change_price_percent().plot(color = 'b',label = self.stock)
         market = Market(self.starttime,self.endtime)
         market.change_price_percent().plot(color = 'r',label = 'S&P 500')
-        plt.legend()
+        plt.legend(loc=4)
         plt.xticks(rotation=45)
         plt.title('The Comparison between {} and S&P 500 close price '.format(self.stock))
         plt.xlabel('Date Time')
@@ -134,4 +147,3 @@ def to_percent(y, position):
         return s + r'$\%$'
     else:
         return s + '%'
-    
