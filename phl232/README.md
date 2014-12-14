@@ -9,34 +9,139 @@ Israel Malkin (IM965)
 
 ## What is it
 
-For our project, we wrote a Python package (**portfolioFactory**) that streamlines the process for building cross-sectional trading strategies/factors. In our examples, we show how you can easily use **portfolioFactory** to implement [**momentum**][momentum] strategies (i.e. buy the winners) with different horizons and selection criteria. In addition, we include an example to show how this approach can be extened to build generic cross-sectional strategies.
+For our project, we wrote a Python package (**portfolioFactory**) that streamlines the process for building cross-sectional trading strategies/factors. 
+In our examples, we show how you can easily use **portfolioFactory** to implement [**momentum**][momentum] (i.e. buy the winners) and volatility strategies with different 
+horizons and selection criteria. In addition, we demonstrate how this approach can be extened to build generic cross-sectional strategies.
  
-As discussed, we created 3 examples that make use of our package. Examples can be run via the terminal from the main directory. For example: 
+
+### Demonstration
+
+As discussed, we created 3 examples that make use of our package. Examples can be run via the terminal using the demo.py module from the main directory after going through this user guide.
 
 ```
-python example1.py
+python demo.py
 ```
 
-The data for the examples can be found in /ExampleData. The examples will return a series of plots showing the risk/return characteristics of the specified strategy. Additionally, the example will return a portoflio object. 
+The data for the examples can be found in /ExampleData. The examples will return a series of plots showing the risk/return characteristics of the specified strategy. 
+Additionally, the example will return a strategy object. For convinience, we have already created the necessary datasets and config files to run the examples demonstrated below. 
+The demo module takes care of manually entering commands into the terminal, when prompted please select the appropriate datasets and config files.
+The examples below are written so that after going through them you will be able to generate a custom strategy with the help of the demo module, but 
+also to exhibit how someone could use the functionality and flexibility of the package to generate various strategies *without the demo module*.
 
-### Example I
+### Intializing a universe
+
+To start the procedure, one would intialize a universe object by passing the location of a pickled pandas dataframe (of stock returns) to the *universe* constructor.
+This object defines the entire universe (set of potential investments) upon which the different investment strategies can be generated.  
+```
+example_uni = universe('example_uni','./ExampleData/universeData')
+```
+Where universeData is a pickled pandas dataframe containing stock returns. 
+
+In the demo module you will not have to explicitly pass any commands, you will simply be asked to select (click) on the universe file the we have pre-loaded into the /ExampleData directory. 
+All strategies generated through the demo will be defined on the same universe so you will have to select this file for all the examples below.
+The universe dataset we provide consists of 3000 stocks obtained from XXXX.
+After creating a universe object, you are now ready to define a strategy over all the stocks in this universe.
+
+
+### Example I: Momentum strategy of top 300 stocks with annual rebalancing
 
 Suppose an investor has the idea that stocks that have performed well will continue to perform well. To test this strategy, the investor uses the the following procedure:
+- At the end of each year, look back over the previous *12 months* and buy the top *300* stocks as ranked by *12 month* return
+- Hold these *300* stocks for *12 months*
+- Repeat the sorting procedure and form a new portfolio every *12 months* (aka rebalace every 12 months)
 
-- At the end of each year, look back over the previous *1 Year* and buy the top *n* stocks as ranked by *1 Year* return
-- Hold these *n* stocks for *1 Year*
-- Repeat the sorting procedure and form a new portfolio every *December*
 
-To implement this using **portfolioFactory**, the config file would look like:
-
+To implement this strategy using **portfolioFactory**, pass the *strategy* constructor a universe object and the location of a config file:
 ```
-univerpath:
-c: 
+strategy_ex1 = strategy(example_uni,'./ExampleData/config_Ex1.txt')
 ```
 
-### Example II
+The config file config_Ex1.txt would look like:
+```
+name = first example strategy
+signalPath = ./ExampleFiles/rolling_returns_12m
+rebalanceWindow = 12
+rule = 300 
+```
+The strategy config file must include the four parameters as above:
+- *Name* can be anything you wish to name the strategy.
+- *signalPath* specifies the path for a pickled pandas dataframe which will be used as a singal. These are called *signals* because buying/selling is based on this data, so for this first example we are using 12-month rolling returns as the *signal*.
+- *rebalanceWindow* specifies how often the sorting procedure should take place.
+- *rule* specifies how many investments should be picked based on the singal. 
 
-### Example III
+Putting it all together, we are picking the top 300 (*rule*) stocks based on 12-month rolling returns (*signal*) and reoptimizing every 12 months (*rebalanceWindow*).
+
+Again, the config file *config_Ex1.txt* and the *rolling_returns_12m* signal dataset specified in that config file have been pre-loaded for use in the demo, you will simply have to click
+the desired config file to select it.
+ 
+Note that such *signal* datasets (rolling returns, rolling volatility, etc.) are easily generated using the pandas rolling_apply method.
+For this example, we created the *rolling_returns_12m signal* easily with:
+```
+rolling_returns_12m = (pd.rolling_apply(1+universeData,window=12,func=np.prod,min_periods=12) - 1) 
+pd.to_pickle('./ExampleFiles/rolling_returns_12m')
+```
+
+In the demo, after selecting the universe and config file the strategy will be generated by selecting the top 300 stocks based on 12-month rolling returns and be rebalanced every 12 months.
+This procedure might take a little while (around 30 seconds), you will then be asked to enter a starting and ending year over which the plots will be generated and risk metrics will be calculated.
+The risk metrics will be displayed on the figures.
+
+
+### Example II: Momentum strategy of top 300 stocks with semi-annual rebalancing
+
+After looking at the return metrics generated by the first strategy, the investor decided that he would like to rebalance more often (from every 12 months to every 6 months).
+To test this strategy, the investor uses the the following procedure:
+- At the end of each year, look back over the previous *12 months* and buy the top *300* stocks as ranked by *12 month* return
+- Hold these *300* stocks for *6 months*
+- Repeat the sorting procedure and form a new portfolio every *6 months* (aka rebalace every 6 months)
+
+
+To implement this strategy, pass the *strategy* constructor a slightly modified config file:
+```
+strategy_ex2 = strategy(example_uni,'./ExampleData/config_Ex2.txt')
+```
+
+The config file config_Ex2.txt would look like:
+```
+name = second example strategy
+signalPath = ./ExampleFiles/rolling_returns_12m
+rebalanceWindow = 6
+rule = 300 
+```
+Note that the only difference between the config file in example one and this example is that the *rebalanceWindow* parameter was changed from 12 to 6.
+The *signal* data and *rule* parameters remain the same as they did in the first example, but an entirely different investment strategy is created.
+
+
+### Example III: Volatility strategy of bottom 200 stocks with annual rebalancing
+
+
+After looking at the risk/return metrics and plots for the first two strategies, the investor notices that his returns would be too volatile.
+He has the idea that stocks which had low volatility will continue to do so. To test this strategy, the investor uses the the following procedure:
+- look back over the previous *12 months* and buy the bottom *200* stocks as ranked by *12 month* volatility
+- Hold these *200* stocks for *6 months*
+- Repeat the sorting procedure and form a new portfolio every *6 months* (aka rebalace every 6 months)
+
+
+To implement this volatility strategy, construct a new *strategy* object:
+```
+strategy_ex3 = strategy(example_uni,'./ExampleData/config_Ex3.txt')
+```
+
+The config file config_ex3.txt would look like:
+```
+name = third example strategy
+signalPath = ./ExampleFiles/rolling_volatility_12m
+rebalanceWindow = 6
+rule = -200 
+```
+Where *rolling_volatility_12m* is a pickled pandas dataframe containing 12-month rolling standard deviation of returns, as opposed to rolling returns used in the examples above.
+Note that for picking the bottom 200 stocks, the *rebalanceWindow* parameter was set to -200 in the config file.
+
+
+
+*Although the examples went through the syntax of how someone would use the package, the demo module will simply prompt you to select the
+desired universe and config file (which are all located in the /ExampleData directory). We hope that the demo will give you an idea of how someone would use this package to generate and analyze investment strategies defined over
+large universes with ease. Feel free to play with the different parameters in the config file and create your own investment strategy!* 
+
 
 [momentum]: http://faculty.chicagobooth.edu/tobias.moskowitz/research/JF_12021_TMcomments.pdf
 
