@@ -19,6 +19,13 @@ def main():
     
     Example: strategy = main()    
     
+    on the first screen select ./ExampleFiles/assetReturnsData_SELECTME
+    on the second screen seelct ./ExampleFiles/config_Ex1.txt
+    
+    Start Year: 1990
+    End Year: 2010
+    Rolling Window Analysis: [3,6,12,24]
+    
     Input  
     --------
     Strategy Setup: 
@@ -41,18 +48,18 @@ def main():
     
     '''
        
-    # Select asset return data
+    # Select asset return data and create niverse
     assetReturnsPath = getFileLocation.getFileLocation('Please select the Return File')
     demoUniverse = universe.universe('testUniverse', assetReturnsPath)
     
-    # Select config fles
+    # Select config fles and compute strategy
     configFilePath = getFileLocation.getFileLocation('Please select the Config File')
     demoStrategy = strategy.strategy(demoUniverse, configFilePath)
     
     # Get user input for plots
     startYear, endYear, windowInput = reporting.getUserPlottingParameters()
     
-    # Plot
+    # Plot risk/return metrics
     reporting.plotRollingReturn(demoStrategy.strategyReturns, windowInput)
     reporting.plotWithStats(demoStrategy.strategyReturns, startYear, endYear)
     
