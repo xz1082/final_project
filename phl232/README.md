@@ -15,10 +15,11 @@ horizons and selection criteria. In addition, we demonstrate the flexibility of 
 
 ## Quick Start
 
-After installing all the required packages [See Dependicies], the demo can be run via the termial in Pytyon's interactive mode:
+After installing all the required packages [See Dependencies], the demo can be run via the terminal in Python's interactive mode. This allows the user to explore the 
+returned object and plots.
 
 ```
-./final_project/phl232$ python
+>>>./final_project/phl232$ python
 
 Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
 [GCC 4.8.2] on linux2
@@ -28,7 +29,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> strategy = demo.main() 
 ```
 
-The demo will first ask for the location of the universe and strategy config file [See Demonstration for full explination]. Please select the following files:
+The demo will first ask for the location of the universe and strategy config file [See Demonstration for full explanation]. Please select the following files:
 
 - Returns File: ./final_project/phl232/ExampleFile/assetReturnsData_SELECTME
 - Config File: ./final_project/phl232/ExampleFile/config_Ex1.txt
@@ -37,12 +38,17 @@ Once the portfolio has been formed, the program will prompt for dates for plotti
 
 ```
 For plotting, please supply the following input: 
-Start Year: **1995**
-End Year: **2012**
-Rolling Analysis Window (list of 4 integers window lengths e.g. [3,6,12,24]): **[3,6,12,24]**
+Start Year: 1995
+End Year: 2012
+Rolling Analysis Window (list of 4 integers window lengths e.g. [3,6,12,24]): [3,6,12,24]
 ```
 
-The program will return the strategy object along with two figures showing risk/return metrics and plots for strategy returns. 
+The program will return the strategy object along with two figures showing risk/return metrics and plots for the strategy The strategy object can be used in the standard ways. For example:
+
+```
+>>> help(strategy)
+>>> strategy.strategyReturns
+'''
 
 ## Demonstration
 
@@ -57,17 +63,16 @@ also to exhibit how someone could use the functionality and flexibility of the p
 
 ### Initializing a universe
 
-To start the procedure, one would initialize a universe object by passing the location of a pickled pandas dataframe (of stock returns) to the *universe* constructor.
-This object defines the entire universe (set of potential investments) upon which the different investment strategies can be generated.
+universe is the primary data container for portoflioFactory. This object defines the entire universe (set of potential investments) upon which the different investment strategies can be generated. To start the procedure, one would initialize a universe object by passing the location of a pickled pandas dataframe (of **monthly** stock returns) to the *universe* constructor.
 ```
-example_uni = universe('example_uni','./ExampleData/universeData')
+example_uni = universe('Name','./ExampleData/universeData')
 ```
-Where universeData is a pickled pandas dataframe containing stock returns. 
+Where universeData is the path to a pickled pandas dataframe containing stock returns. 
 
 In the demo module you will not have to explicitly pass any commands, you will simply be asked to select (click) on the universe file the we have pre-loaded into the /ExampleData directory. 
 
 All strategies generated through the demo will be defined on the same universe so you will have to select this file for all the examples below.
-The universe dataset we provide consists of monthly returns data for around 3000 companies. This data can be obtained from a number or online sources e.g. Yahoo, Google and Quandl. 
+The universe dataset we provide consists of monthly returns data for around 3000 companies. This data can be obtained from a number of online sources e.g. Yahoo, Google and Quandl. 
 
 After creating a universe object, you are now ready to define a strategy over all the stocks in this universe.
 
