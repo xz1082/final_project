@@ -48,7 +48,7 @@ The program will return the strategy object along with two figures showing risk/
 ```
 >>> help(strategy)
 >>> strategy.strategyReturns
-'''
+```
 
 ## Demonstration
 
