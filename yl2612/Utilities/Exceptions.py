@@ -9,14 +9,14 @@ class StockNameInputException(Exception):
     Raise when the input is not a valid stock ticker symbol in the yahoo financial data.
     """
     def __str__(self):
-        return "The input is invalid. It must be a stock ticker symbol in the yahoo financial data."
+        return "The input is invalid. It must be a stock ticker symbol in the Yahoo! Finance. Check if the stock is availble for public trading during the date range as well."
     
 class DateInputException(Exception):
     """
     Raise when the input is not date form.
     """
     def __str__(self):
-        return "The input is invalid. It must contain year, month, and day, separated by '/', such as 2011/1/1."
+        return "The input is invalid. It must contain valid year, month, and day, separated by '/', such as 2011/1/1."
     
 class EmptyInputException(Exception):
     """
@@ -37,7 +37,7 @@ class EndDateException(Exception):
     Raise when the end date is beyond the current time.
     """
     def __str__(self):
-        return "The end date is beyond the current time, please reenter the dates."
+        return "Sorry we cannot predict the future, please enter a valid date."
 
 class ConnectInternetException(Exception):
     """
