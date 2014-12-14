@@ -10,28 +10,51 @@ Israel Malkin (IM965)
 ## What is it
 
 For our project, we wrote a Python package (**portfolioFactory**) that streamlines the process for building cross-sectional trading strategies/factors. 
-In our examples, we show how you can easily use **portfolioFactory** to implement [**momentum**][momentum] (i.e. buy the winners) and volatility strategies with different 
-horizons and selection criteria. In addition, we demonstrate how this approach can be extened to build generic cross-sectional strategies.
- 
+In our examples, we show how you can easily use **portfolioFactory** to implement [**momentum**][momentum] (i.e. buy the winners) strategies with different 
+horizons and selection criteria. In addition, we demonstrate the flexibility of the package by building generic cross-sectional strategy based on realized volatility.
 
-### Demonstration
+## Quick Start
 
-As discussed, we created 3 examples that make use of our package. Examples can be run via the terminal using the demo.py module from the main directory after going through this user guide.
+After installing all the required packages [See Dependicies], the demo can be run via the termial:
+
+```
+./final_project/phl232$ python demo.py
+```
+
+The demo will first ask for the location of the universe and strategy config file [See Demonstration for full explination]. Please selct the following files:
+
+- Returns File: ./final_project/phl232/ExampleFile/assetReturnsData_SELECTME
+- Config File: ./final_project/phl232/ExampleFile/config_Ex1.txt
+
+Once the portfolio has been formed, the program will prompt for dates for plotting. 
+
+```
+For plotting, please supply the following input: 
+Start Year: **1995**
+End Year: **2012**
+Rolling Analysis Window (list of 4 integers window lengths e.g. [3,6,12,24]): **[3,6,12,24]**
+```
+
+The program will return the strategy object (in an interactive environment) along with two figures showing risk/return metrics and plots for strategy returns. 
+
+## Demonstration
+
+As discussed, we show 3 examples that make use of our package. Examples can be run via the terminal using the demo.py module from the main directory after going through this user guide.
 
 ```
 python demo.py
 ```
 
 The data for the examples can be found in /ExampleData. The examples will return a series of plots showing the risk/return characteristics of the specified strategy. 
-Additionally, the example will return a strategy object. For convinience, we have already created the necessary datasets and config files to run the examples demonstrated below. 
+Additionally, the example will return a strategy object. For convenience, we have already created the necessary datasets and config files to run the examples demonstrated below. 
 The demo module takes care of manually entering commands into the terminal, when prompted please select the appropriate datasets and config files.
 The examples below are written so that after going through them you will be able to generate a custom strategy with the help of the demo module, but 
 also to exhibit how someone could use the functionality and flexibility of the package to generate various strategies *without the demo module*.
 
-### Intializing a universe
+### Initializing a universe
 
-To start the procedure, one would intialize a universe object by passing the location of a pickled pandas dataframe (of stock returns) to the *universe* constructor.
-This object defines the entire universe (set of potential investments) upon which the different investment strategies can be generated.  
+To start the procedure, one would initialize a universe object by passing the location of a pickled pandas dataframe (of stock returns) to the *universe* constructor.
+This object defines the entire universe (set of potential investments) upon which the different investment strategies can be generated.
 ```
 example_uni = universe('example_uni','./ExampleData/universeData')
 ```
@@ -65,9 +88,9 @@ rule = 300
 ```
 The strategy config file must include the four parameters as above:
 - *Name* can be anything you wish to name the strategy.
-- *signalPath* specifies the path for a pickled pandas dataframe which will be used as a singal. These are called *signals* because buying/selling is based on this data, so for this first example we are using 12-month rolling returns as the *signal*.
+- *signalPath* specifies the path for a pickled pandas dataframe which will be used as a signal. These are called *signals* because buying/selling is based on this data, so for this first example we are using 12-month rolling returns as the *signal*.
 - *rebalanceWindow* specifies how often the sorting procedure should take place.
-- *rule* specifies how many investments should be picked based on the singal. 
+- *rule* specifies how many investments should be picked based on the signal. 
 
 Putting it all together, we are picking the top 300 (*rule*) stocks based on 12-month rolling returns (*signal*) and reoptimizing every 12 months (*rebalanceWindow*).
 
@@ -154,17 +177,17 @@ Our project was tested to work using Python 2.7 on both Windows 8 and Ubuntu 15.
 - [matplotlib](http://matplotlib.sourceforge.net/): for plotting
 - [Pandas](http://pandas.pydata.org/): 0.15.1
 - [TkInter](http://tkinter.unpythonic.net/wiki/How_to_install_Tkinter): Used for GUI. This package should be built in. 
-- [Seaborn](http://stanford.edu/~mwaskom/software/seaborn/): Rerquired for plotting. Using pip, Seaborn can be installed using the following command:
+- [Seaborn](http://stanford.edu/~mwaskom/software/seaborn/): Required for plotting. Using pip, Seaborn can be installed using the following command:
 
 	```
 	pip install seaborn
 	```
 Please see **portfoliFactory** documentation for additional details. 
 
+## Background
+
+This project arose out of a need to quickly and efficiently create
+
 ## License
 MIT
-
-## Documentation
-
-See example ipython notebooks in /Examples
 
