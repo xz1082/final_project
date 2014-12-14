@@ -38,8 +38,8 @@ Once the portfolio has been formed, the program will prompt for dates for plotti
 
 ```
 For plotting, please supply the following input: 
-Start Year: 1995
-End Year: 2012
+Start Year (min 1991): 1995
+End Year (max 2014): 2012
 Rolling Analysis Window (list of 4 integer window lengths e.g. [3,6,12,24], max window = 72): [3,6,12,24]
 ```
 

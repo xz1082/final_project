@@ -156,13 +156,15 @@ def getUserPlottingParameters():
     
     inputCheck = False  
     maxWindow = 72 # Maximum roling window size i.e. 5 years
+    minYear = 1991
+    maxYear = 2014
     
     while inputCheck == False:
     
         print 'For plotting, please supply the following input: '
     
         try:
-            startYear = input('Start Year: ')
+            startYear = input('Start Year (min 1991): ')
             
             # Check start year is an int
             if not isinstance(startYear, int):
@@ -170,30 +172,38 @@ def getUserPlottingParameters():
                 raise Exception  
                 
             # Check end year is an interger
-            endYear = input('End Year: ')
+            endYear = input('End Year (max 2014): ')
             
             if not isinstance(endYear, int) or endYear < startYear:
                 
                 raise Exception  
+            
+            # Check start year is in range                
+            if not minYear <= startYear <= maxYear:
                 
-            if startYear < 0 or endYear < 0:
+                raise Exception
+                
+            # check end year is in range
+            if not (startYear < endYear <= maxYear):
                 
                 raise Exception
             
             windowInput= input('Rolling Analysis Window (list of 4 int for window size e.g. [3,6,12,24], max window = 72): ')
             
+            # check input is list
             if not isinstance(windowInput, list):
                 
                 raise Exception
-                
+            # check list entries are int
             if not all([isinstance(x, int) for x in windowInput]):
                 
                 raise Exception
-                
+            # check window within bound
             if max(windowInput) > maxWindow:
                 
                 raise Exception 
-                          
+            
+            # pass
             inputCheck = True
             
         except KeyboardInterrupt:
