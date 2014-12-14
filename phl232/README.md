@@ -183,7 +183,7 @@ Our project was tested to work using Python 2.7 on both Windows 8 and Ubuntu 15.
 
 - [NumPy](http://www.numpy.org): 1.7.0+
 - [matplotlib](http://matplotlib.sourceforge.net/): for plotting
-- [Pandas](http://pandas.pydata.org/): 0.15.1 is required for file loading to work. The update can be done using pip:
+- [Pandas](http://pandas.pydata.org/): 0.15.1 is required for file loading to work. The update can be done using pip. This update is require if demo is run on the class virtual machine.
 
 	```
 	pip install Pandas --upgrade
