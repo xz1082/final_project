@@ -181,22 +181,19 @@ large universes with ease. Feel free to play with the different parameters in th
 
 Our project was tested to work using Python 2.7 on both Windows 8 and Ubuntu 15.04 systems. In addition to **portfolioFactory** the following packages are required for basic functionality:
 
-- [NumPy](http://www.numpy.org): 1.7.0 or higher
-- [SciPy](http://www.scipy.org): miscellaneous statistical functions
+- [NumPy](http://www.numpy.org): 1.7.0+
 - [matplotlib](http://matplotlib.sourceforge.net/): for plotting
 - [Pandas](http://pandas.pydata.org/): 0.15.1 is required for file loading to work. The update can be done using pip:
 
-```
-pip install Pandas --upgrade
-```
+	```
+	pip install Pandas --upgrade
+	```
 - [TkInter](http://tkinter.unpythonic.net/wiki/How_to_install_Tkinter): Used for GUI. This package should be built in. 
 - [Seaborn](http://stanford.edu/~mwaskom/software/seaborn/): Required for plotting. Using pip, Seaborn can be installed using the following command:
 
 	```
 	pip install seaborn
 	```
-Please see **portfoliFactory** documentation for additional details. 
-
 ## License
 MIT
 
