@@ -40,7 +40,7 @@ Once the portfolio has been formed, the program will prompt for dates for plotti
 For plotting, please supply the following input: 
 Start Year: 1995
 End Year: 2012
-Rolling Analysis Window (list of 4 integers window lengths e.g. [3,6,12,24]): [3,6,12,24]
+Rolling Analysis Window (list of 4 integer window lengths e.g. [3,6,12,24], max window = 72): [3,6,12,24]
 ```
 
 The program will return the strategy object along with two figures showing risk/return metrics and plots for the strategy The strategy object can be used in the standard ways. For example:
@@ -184,7 +184,11 @@ Our project was tested to work using Python 2.7 on both Windows 8 and Ubuntu 15.
 - [NumPy](http://www.numpy.org): 1.7.0 or higher
 - [SciPy](http://www.scipy.org): miscellaneous statistical functions
 - [matplotlib](http://matplotlib.sourceforge.net/): for plotting
-- [Pandas](http://pandas.pydata.org/): 0.15.1
+- [Pandas](http://pandas.pydata.org/): 0.15.1 is required for file loading to work. The update can be done using pip:
+
+```
+pip install Pandas --upgrade
+```
 - [TkInter](http://tkinter.unpythonic.net/wiki/How_to_install_Tkinter): Used for GUI. This package should be built in. 
 - [Seaborn](http://stanford.edu/~mwaskom/software/seaborn/): Required for plotting. Using pip, Seaborn can be installed using the following command:
 

@@ -155,6 +155,7 @@ def getUserPlottingParameters():
     '''
     
     inputCheck = False  
+    maxWindow = 72 # Maximum roling window size i.e. 5 years
     
     while inputCheck == False:
     
@@ -163,21 +164,35 @@ def getUserPlottingParameters():
         try:
             startYear = input('Start Year: ')
             
+            # Check start year is an int
             if not isinstance(startYear, int):
                 
                 raise Exception  
                 
+            # Check end year is an interger
             endYear = input('End Year: ')
             
             if not isinstance(endYear, int) or endYear < startYear:
                 
                 raise Exception  
+                
+            if startYear < 0 or endYear < 0:
+                
+                raise Exception
             
-            windowInput= input('Rolling Analysis Window (list of 4 integers window lengths e.g. [3,6,12,24]): ')
+            windowInput= input('Rolling Analysis Window (list of 4 int for window size e.g. [3,6,12,24], max window = 72): ')
             
             if not isinstance(windowInput, list):
                 
                 raise Exception
+                
+            if not all([isinstance(x, int) for x in windowInput]):
+                
+                raise Exception
+                
+            if max(windowInput) > maxWindow:
+                
+                raise Exception 
                           
             inputCheck = True
             
