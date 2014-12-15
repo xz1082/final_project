@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>NBA Players</title>
+
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/bootstrap/css/dashboard.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">NBA Stats</a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="/overview/2014">Overview</a></li>
+	    <li><a href="/players/info">Players</a></li>
+	    <li><a href="/salaries/trend">Salaries</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+	<div class="col-sm-3 col-md-2 sidebar">
+	  <ul class="nav nav-sidebar">
+	    <li><a href="/salaries/trend">Salaries Trend</a></li>
+	    <li><a href="/salaries/dist/2014">Salaries Distribution</a></li>
+	    <li class="active"><a href="/salaries/reg/2014">Regression Analysis</a></li>
+	  </ul>
+	</div>
+	
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="page-header">
+      <h1>Regression Analysis</h1>
+      <p style='font-size:140%'>
+      &#8718; We analyze players' salaries with their last-year performances data.<br>
+      &#8718; We predict salaries with OLS linear modeling.<br>
+      &#8718; We analyze overpriced and underpriced players.<br>
+
+      </p>
+	    <div class="dropdown" align="right">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	      Year
+	      <span class="caret"></span>
+	      </button>
+	      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+		{% for year in years %}
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="/salaries/reg/{{year}}">{{year}}</a></li>
+		{% endfor %}
+	      </ul>
+      </div>  <!-- end of dropdown button -->
+    </div> <!-- end of page-header -->
+
+	  <div class="col-md-12 col-sm-12 col-xs-10">
+	    <div class="panel panel-default">
+	      <div class="panel-heading">
+          <h3 class="panel-title">Salaries & NBA Stats Regression Results <small>{{year}}</small></h3>
+	      </div>
+	      <div class="panel-body">
+          {{plots[0]}}
+          <p><i>
+            <br>
+            &#9733; Please note:<br>
+            1) Colors represent positions: C-blue; PF-green; SF-red; PG-gold; SG-purple.<br>
+            2) Point sizes represent points per game for each player.<br>
+            3) The reference line represents that predicted salary is the same with true salary.<br>
+            Thus, players under this line are overpriced; players above this line are underpriced.
+          </i></p>
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="col-md-12 col-sm-12 col-xs-10">
+	    <div class="panel panel-default no-y-axis">
+	      <div class="panel-heading">
+          <h3 class="panel-title">Top 10 Underpriced Players <small>{{year}}</small></h3>
+	      </div>
+	      <div class="panel-body">
+		{{plots[1]}}
+          <p><i>
+            <br>
+            &#9733; Please note:<br>
+            1) Each bar (blue part + grey part) represents predicted salaries for each player based on his performances.<br>
+            2) Blue part represents true salaries for each player.<br>
+            3) Text on grey part is minus underpriced ratio. True salaries= (1-ratio)*Predicted salaries
+            
+          </i></p>
+	      </div>
+	    </div>
+	  </div>
+	  
+    <div class="col-md-12 col-sm-12 col-xs-10">
+      <div class="panel panel-default no-y-axis">
+        <div class="panel-heading">
+          <h3 class="panel-title">Top 10 Overpriced Players <small>{{year}}</small></h3>
+        </div>
+        <div class="panel-body">
+          {{plots[2]}}
+          <p><i>
+            <br>
+            &#9733; Please note:<br>
+            1) Each bar (blue part + grey part) represents true salaries for each player.<br>
+            2) Blue part represents predicted salaries for each player based on his performances.<br>
+            3) Text on grey part is overpriced ratio. True salaries= (1+ratio)*Predicted salaries
+            
+          </i></p>
+        </div>
+      </div>
+    </div>
+         
+<!-- todo-->
+	      </div>
+	    </div>
+	  </div>
+
+	  
+	</div>
+	
+      </div>
+    </div>
+
+        <!-- Bootstrap core JavaScript
+	     ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

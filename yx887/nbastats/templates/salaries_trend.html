@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>NBA Players</title>
+
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/bootstrap/css/dashboard.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">NBA Stats</a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="/overview/2014">Overview</a></li>
+	    <li><a href="/players/info">Players</a></li>
+	    <li><a href="/salaries/trend">Salaries</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+	<div class="col-sm-3 col-md-2 sidebar">
+	  <ul class="nav nav-sidebar">
+	    <li class="active"><a href="/salaries/trend">Salaries Trend</a></li>
+	    <li><a href="/salaries/dist/2014">Salaries Distribution</a></li>
+	    <li><a href="/salaries/reg/2014">Regression Analysis</a></li>
+	  </ul>
+	</div>
+	
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+    <div class="page-header">
+      <h1>Salaries Trend Analysis</h1>
+    </div>
+    
+    <div class="col-md-12 col-sm-12 col-xs-10">
+       <div class="panel panel-default">    
+         <h2 class="panel-title panel-heading">Salaries Overview ($)</h2>
+         <div class="table-responsive">
+           <table class="table table-striped">
+             <thead>
+               <tr>
+                 <th>Year</th>
+                 <th>Count</th>
+                 <th>Mean</th>
+                 <th>Std</th>
+                 <th>Min</th>
+                 <th>Median</th>
+                 <th>Max</th>
+               <tr>
+             </thead>
+             <tbody>
+               {% for year in table.index %}
+               <tr>
+                 <td>{{year}}</td>
+                 <td>{{table.ix[year]['count']}}</td>
+                 <td>{{table.ix[year]['mean']}}</td>
+                 <td>{{table.ix[year]['std']}}</td>
+                 <td>{{table.ix[year]['min']}}</td>
+                 <td>{{table.ix[year]['50%']}}</td>
+                 <td>{{table.ix[year]['max']}}</td>
+               </tr>
+               {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+	  <div class="col-md-12 col-sm-12 col-xs-10">
+	    <div class="panel panel-default">
+	      <div class="panel-heading">
+		<h3 class="panel-title">NBA Average Salaries Trend 2000-2015 </h3>
+	      </div>
+	      <div class="panel-body">
+		{{plots[0]}}
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="col-md-12 col-sm-12 col-xs-10">
+	    <div class="panel panel-default">
+	      <div class="panel-heading">
+		<h3 class="panel-title">NBA Average Salaries Trend by Positions 2000-2015 </h3>
+	      </div>
+	      <div class="panel-body">
+		{{plots[1]}}
+	      </div>
+	    </div>
+	  </div>
+
+<!-- todo-->
+	      </div>
+	    </div>
+	  </div>
+
+	  
+	</div>
+	
+      </div>
+    </div>
+
+        <!-- Bootstrap core JavaScript
+	     ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

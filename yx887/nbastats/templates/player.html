@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>NBA Players</title>
+
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/bootstrap/css/dashboard.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">NBA Stats</a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="/overview/2014">Overview</a></li>
+	    <li><a href="/players/info">Players</a></li>
+	    <li><a href="/salaries/trend">Salaries</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+	<div class="col-sm-3 col-md-2 sidebar">
+	  <ul class="nav nav-sidebar">
+	    <li><a href="/players/info">League Info</a></li>
+	    <li><a href="/players/current">Current Players</a></li>
+	    <li><a href="/players/historic">Historic Players</a></li>
+	  </ul>
+	</div>
+	
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	  
+	  <div class="row">
+	    <div class="btn-group col-sm-12" role="group" aria-label="...">
+	      {% for y in years %}
+	      <a class="btn btn-default {% if y==year %}active{% endif %}" href="/players/{{option}}/{{name|replace(' ', '-')|lower}}/{{y}}">{{y}}</a>
+	      {% endfor %}
+	    </div>
+
+	    <div class="col-sm-6">
+	      <div class="thumbnail">
+		<img src="{{img_src}}" alt="{{name}}">
+		<div class="caption">
+		  <h3>{{name}} <small>{{stats.iloc[0].POS}}</small></h3>
+		  <h5>{{season}} Season</h5>
+		</div>
+		
+		<table class="table">
+		  <tr>
+		    {% for field in fields %}
+		    <th>{{field}}</th>
+		    {% endfor %}
+		  </tr>
+		  <tr>
+		    {% for value in values %}
+		    <td>{{value}}</td>
+		    {% endfor %}
+		  </tr>
+		</table>
+	      </div> <!-- end thumbnail -->
+	    </div>
+
+	    <div class="col-sm-6">
+        <div class="thumbnail" align="left">
+          <img src="/static/img/{{fig}}" alt="Player Ability Chart">
+	      </div>
+	    </div>
+	      
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+	      <h2 class="panel-title">Stats <small>{{season}}</small></h2>
+	    </div>
+
+	    <div class="table-responsive">
+	      <table class="table table-striped">
+		<thead>
+		  <tr>
+		    <th>PLAYER</th>
+		    <th>POS</th>
+		    <th>TEAM</th>
+		    <th>GP</th>
+		    <th>GS</th>
+		    <th>MIN</th>
+		    <th>PTS</th>
+		    <th>REB</th>
+		    <th>AST</th>
+		    <th>STL</th>
+		    <th>BLK</th>
+		    <th>TO</th>
+		    <th>PF</th>
+		    <th>FG%</th>
+		    <th>3P%</th>
+		    <th>FT%</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  {% for i in rows %}
+		  <tr>
+		    <td>{{name}}</td>
+		    <td>{{stats.iloc[i].POS}}</td>
+		    <td>{{stats.iloc[i].TEAM}}</td>
+		    <td>{{stats.iloc[i].GP}}</td>
+		    <td>{{stats.iloc[i].GS}}</td>
+		    <td>{{stats.iloc[i].MIN}}</td>
+		    <td>{{stats.iloc[i].PPG}}</td>
+		    <td>{{stats.iloc[i].RPG}}</td>
+		    <td>{{stats.iloc[i].APG}}</td>
+		    <td>{{stats.iloc[i].SPG}}</td>
+		    <td>{{stats.iloc[i].BPG}}</td>
+		    <td>{{stats.iloc[i].TPG}}</td>
+		    <td>{{stats.iloc[i].FPG}}</td>
+		    <td>{{stats.iloc[i]['FG%']}}</td>
+		    <td>{{stats.iloc[i]['3P%']}}</td>
+		    <td>{{stats.iloc[i]['FT%']}}</td>
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	      </table>
+	    </div>
+	  </div>
+	  
+	</div>
+	
+      </div>
+    </div>
+
+        <!-- Bootstrap core JavaScript
+	     ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
