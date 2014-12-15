@@ -4,6 +4,7 @@ This module contains the demonstration for our final project
 main() will run through a full demonstration of strategy creation and evaluation.
 
 Author: Peter Li
+Contributor: Israel Malkin
 
 '''
 

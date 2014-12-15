@@ -1,7 +1,8 @@
 """
 reporting is a module that contains a collection of functions to make plots for demo.py
 
-Author: Peter Li and Israel Malkin
+Author: Peter Li
+Contributor: Israel Malkin
 
 """
 

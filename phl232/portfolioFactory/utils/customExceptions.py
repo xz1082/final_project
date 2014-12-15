@@ -1,7 +1,8 @@
 """
 This module contains user definied exceptions
 
-Author: Peter Li and Israel Malkin
+Author: Israel Malkin
+Contributor: Peter Li
 """
 
 

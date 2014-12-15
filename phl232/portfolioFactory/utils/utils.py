@@ -1,7 +1,8 @@
 """
 utils contains general purpose functions used throughout portfolioFactory
 
-Author: Peter Li and Israel Malkin
+Author: Peter Li
+Contributor: Israel Malkin
 """
 
 import numpy as np
