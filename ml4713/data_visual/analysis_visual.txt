@@ -1,0 +1,18 @@
+DATA VISUALIZATION ANALYSIS
+
+Author: MENGFEI LI (ml4713)
+
+
+
+Besides user interactions outputs, we here to analysis the default output from this data_visual part of the project.
+
+1. Two pie charts:
+   From this graph results, we can see that in this dataset, female instances are morethan males but the proportion of femlaes who make over 50K is more than when we look at the people who make less than 50K. However, this is the situation back to 1996, so case might be different now.
+
+
+2. Age and working hours graphs:
+   From this two graphs, we can see that for either >50K or <=50K, people's mean age and working hours on each education level are approximately the same and have a small standard error mean. It is also interesting that we assume working hours longer might be more possible to make over 50K but the graph shows different results that it was not the case back then.
+
+
+NOTES:
+This part produces other outputs by user's choice which will not be included in this analysis section.
