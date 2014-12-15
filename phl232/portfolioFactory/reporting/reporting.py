@@ -194,8 +194,8 @@ def getUserPlottingParameters():
             if not isinstance(windowInput, list):
                 
                 raise Exception
-            # check list entries are int
-            if not all([isinstance(x, int) for x in windowInput]):
+            # check list entries are positive int
+            if not all([(isinstance(x, int) and x>0) for x in windowInput]):
                 
                 raise Exception
             # check window within bound
