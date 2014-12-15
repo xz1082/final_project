@@ -1,4 +1,4 @@
-# author: Wenjia Wu(ww933):90% and Yucheng Lu(yl2695):10%
+# author: Wenjia Wu(ww933) and Yucheng Lu(yl2695)
 from StateValidity import *
 from StateStarDistributionFuncs import *
 import unittest

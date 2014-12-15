@@ -1,4 +1,4 @@
-# author: Wenjia Wu(ww933):60% and Yucheng Lu(yl2695):40%
+# author: Wenjia Wu(ww933) and Yucheng Lu(yl2695)
 
 import pandas as pd
 import matplotlib.pyplot as plt
