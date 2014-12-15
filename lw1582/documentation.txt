@@ -1,0 +1,11 @@
+Requirements:
+
+matplotlib
+can be installed via pip install matplotlib
+
+pygeocoder
+can be installed via pip install pygeocoder
+
+motionless
+can be installed via pip install motionless
+
