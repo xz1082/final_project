@@ -1,0 +1,83 @@
+Programming for Data Science
+Final Project
+
+Mengfei Li (ml4713)
+Meina Zhou (mz948)
+Chris Zhou (xz1082)
+
+
+I. PROJECT DESCRIPTION
+II. PROJECT USER GUIDE
+
+
+
+I. PROJECT DESCRIPTION
+
+This project is designed specifically for the dataset named "adult_data.txt" from UCI Repository. Each data instance has 15 attributes which mainly are personal information. For more information, data description can be found at the following link:
+
+https://archive.ics.uci.edu/ml/datasets/Adult
+
+To be more specific, we are limited to analysis the following columns of the dataset:
+features: age, workclass, education, occupation, relationship, native-country, race, martial-status, hours-per-week, capital-gain, capital-loss
+
+category: y, sex
+
+NOTE: y represents person’s income that either >50K or <=50K .
+
+
+    PART ONE  DATA VISUALIZATION (MENGFEI LI)
+
+For visualization the program contains the following parts:
+1. User input file path for data read in.
+2. Data shape display.
+3. User input feature and category for data display, data stats report, and data plots: histogram/bar plots for features against the chosen category
+4. Pie charts for Sex with either people who make over 50K or less than 50K
+5. Age and working hours per week’s plots (histograms and scatter plot) for different education level with either >50K or <=50K
+6. User input age, working hours, subcategory (‘>50K’ or ‘<=50K’), display user information on the previous scatterplot. 
+ 
+
+     PART TWO DATA PREDICTION (Meina Zhou, Chris Zhou)
+
+For prediction the program contains the following parts:
+1. User input file path for data read in.
+2. User input individual features including age, education, marital status, occupation, capital gain, hours per week
+3. The program builds a random forest model using Scikit-Learn tools to predict whether the user makes over 50k dollars yearly. 
+
+
+II USER GUIDE
+
+   PART ONE DATA VISUALIZATION (MENGFEI LI)
+
+1. What this part does, and how to run this part? 
+This part explores the dataset from various perspectives, mainly through visual aspect.
+Before running this part, please download the dataset named ‘adult.txt’ from the directory which contains the project code. To run this part, main file for this is under the file named “data_visual_MengfeiLi.py”. Type ‘python data_visual_MengfeiLi.py’ in terminal or other python IDE.
+
+2. What input this part takes?
+This part takes string as an input from user, which is required by the following format:
+(1). file path: ‘/file_wherever_is_stored/file_name.txt’
+(2). feature_category: user needs to input 2 features and 1 category for the analysis. And the format should be ([feature1,feature2],category). Also, features and category should be chosen from the given list (more information in the project description part)
+(3). Ask user to specify the subcategory for further data analysis. If previous category is chosen as ‘y’, then the subcategory should be either “>50K” or “<=50K” (WARNING: we won’t accept lower case for ‘K’ as an valid input.)
+(4). User inputs personal information ‘age’, ‘workinghours’, ‘subcategory’ for scatter plot comparison on the adult.txt. Input should follow the format of ‘age’,’hours’, ‘subcategory’. 
+NOTE: ‘age’ and ‘hours’ should be an integer from (0,100]
+      ‘subcategory’ should be either ‘>50K’ or ’<=50K’
+
+3. What outputs does this part produce?
+(1). Original dataset shape
+(2). features data display and statistics report
+(3). two plots for both features 
+(4). two pie charts
+(5). scatter plot with user’s information
+
+WARNING: Please don't maximize the window if using terminal. Otherwise one won't be able to see the graph results! Close the display graphical window for next graph output! Preferably, Syper IDE. 
+
+4. How to exit this part?
+User can exit the data visual part by enter 'quit' or ctrl-C.
+
+
+   PART TWO DATA PREDICTION (Meina Zhou, Chris Zhou)
+
+1. The program builds a random forest model from UCI census dataset, takes user input for different variables in the model, and apply the model in user input variables to predict whether the user makes over 50k dollars per year. 2. The program first takes a specific file path as input, and this input should be a local file path where the user downloads and stores the UCI census dataset. The program then takes age, education, marital_status, occupation, capital gain, and hours per week worked as input; capital gain is defined as a profit from the sale of property or an investment. The input options for each variable are all listed when prompting user to enter one. You should enter the text exactly as listed. 3. The user can download the UCI census dataset from https://archive.ics.uci.edu/ml/machine-learning-databases/adult/, choose adult.data and download it into your computer as txt file. This is the file path you will input when prompting to enter the file path in the program.4. The program will produce whether the user is able to earn <50k per year or >= 50k per year based on all the information that the user has entered. 5. The mock library was used in the unittest_prediction.py.Description: Unittest.mock is a mock object library. It is a library for testing in python. It allows you to replace parts of your system under test with mock objects and make assertions about how they have been used.
+https://docs.python.org/3/library/unittest.mock.html
+
+6. To exit the program at any time when asked for input, please input one of the followings:
+	[‘Exit’, ‘exit’, ‘EXIT’, ‘End’, ‘end’, ‘END’, ‘Quit’, ‘quit’, QUIT’] or Ctrl-C.
