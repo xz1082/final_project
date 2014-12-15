@@ -114,6 +114,8 @@ def search_keyword(df):
 
     """
     keyword = raw_input("please input a keyword of the job you interested in: \n")
+    if len(keyword) <= 1:
+        raise no_related_jobs_exception
     if keyword == 'p':
         return 'stop', 'back'
     job_list = filter_the_job(df, keyword)

@@ -131,7 +131,7 @@ def select_a_job(df):
         except invalid_ID_Exception:
             print "job id not exist in this list, please try again or type 'b' to go back"
         except id_not_int_exception:
-            print "job id should be integer, please try again"
+            print "job id should be integer, please try again or type 'b' to go back"
     return Job                 # as described in class, this returns an object
 
 
