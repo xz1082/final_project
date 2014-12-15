@@ -9,9 +9,9 @@ Finance, Google Finance, or local files. Users can run analyses on a single stoc
 or data from their own local files.
 
 B. How to run the program
-Run the gui_class.py module to start up the program. Users can then submit inputs and manipulate 
-data utilizing the pop-up Financial Statistics Software GUI. Text results will be displayed in
-console and graphs will open in new pop-up window.
+Run the main.py module to start up the program (python main.py on command line or click run in eclipse). 
+Users can then submit inputs and manipulate data utilizing the pop-up Financial Statistics Software GUI. 
+Text results will be displayed in console and graphs will open in new pop-up window.
 
 C. Program Inputs / Outputs
 1. Basic Summary and Interactive Graphics 
