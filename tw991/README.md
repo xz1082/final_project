@@ -28,6 +28,7 @@ The application is written entirely in python. Libraries used include:
 
 
 ### How to Run the Program
+You need Internet connection to use this application.
 
 * Run on command line (Linux):
 
