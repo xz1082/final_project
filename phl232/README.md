@@ -11,7 +11,7 @@ Israel Malkin (IM965)
 
 For our project, we wrote a Python package (**portfolioFactory**) that streamlines the process for building cross-sectional trading strategies/factors. 
 In our examples, we show how you can easily use **portfolioFactory** to implement [**momentum**][momentum] (i.e. buy the winners) strategies with different 
-horizons and selection criteria. In addition, we demonstrate the flexibility of the package by building generic cross-sectional strategy based on realized volatility.
+horizons and selection criteria. In addition, we demonstrate the flexibility of the package by building a generic cross-sectional strategy based on realized volatility.
 
 ## Quick Start
 
@@ -40,7 +40,7 @@ Once the portfolio has been formed, the program will prompt for dates for plotti
 For plotting, please supply the following input: 
 Start Year (min 1991): 1995
 End Year (max 2014): 2012
-Rolling Analysis Window (list of 4 integer window lengths e.g. [3,6,12,24], max window = 72): [3,6,12,24]
+Rolling Analysis Window (list of 4 positive int window lengths e.g. [3,6,12,24], max window = 72): [3,6,12,24]
 ```
 
 The program will return the strategy object along with two figures showing risk/return metrics and plots for the strategy The strategy object can be used in the standard ways. For example:

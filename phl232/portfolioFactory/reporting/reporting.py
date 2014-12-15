@@ -149,9 +149,9 @@ def getUserPlottingParameters():
     
     This method will prompt the user fof the following input:
 
-        - Start Year (int): start year for cum. ret. plot
-        - End Year (int): end year for cum. ret. plot 
-        - Rolling Analysis Window (list for 4 ints): windows sizes for rolling analysis
+        - Start Year (int greater than 1991): start year for cum. ret. plot
+        - End Year (int in [start,2014]): end year for cum. ret. plot 
+        - Rolling Analysis Window (list for 4 positive ints): windows sizes for rolling analysis
     
     '''
     
@@ -189,7 +189,7 @@ def getUserPlottingParameters():
                 
                 raise Exception
             
-            windowInput= input('Rolling Analysis Window (list of 4 int for window size e.g. [3,6,12,24], max window = 72): ')
+            windowInput= input('Rolling Analysis Window (list of 4 positive int for window size e.g. [3,6,12,24], max window = 72): ')
             
             # check input is list
             if not isinstance(windowInput, list):
