@@ -25,6 +25,7 @@ def Clean_df(df):
     warnings.filterwarnings('ignore')
     df['Posting Date'] = pd.to_datetime(df['Posting Date'])         # converted to 'date' type
 
+    df = df[df['Work Location']!="Not Used"]
     #remove duplicate since some jobs opening to internal and external share the same job id
     df1 = df.drop_duplicates(cols=['Job ID'])
 
