@@ -1,0 +1,74 @@
+Financial Statistics Software
+Authors: Wenxi Lei(wl1162),  Tian Wang (tw991),  Sylvia Zhao (ssz225)
+
+A. What the program does
+The program is designed to generate an interactive Financial Statistics Software GUI that 
+allows users to perform statistical analyses (i.e. calculate sharpe ratio, standard deviation) 
+and plot graphs for days, months, and years based on historical stock data imported from Yahoo! 
+Finance, Google Finance, or local files. Users can run analyses on a single stock, a portfolio,
+or data from their own local files.
+
+B. How to run the program
+Run the gui_class.py module to start up the program. Users can then submit inputs and manipulate 
+data utilizing the pop-up Financial Statistics Software GUI. Text results will be displayed in
+console and graphs will open in new pop-up window.
+
+C. Program Inputs / Outputs
+1. Basic Summary and Interactive Graphics 
+	1.1.1 For local file:
+	Check "Please check this box if using local data", type in Start and End 
+	Dates in the format yyyy/mm/dd, and click 'Browse local file' to locate file that user would 
+	like to analyze. 
+	1.1.2 For a stock:
+	Input valid Stock Ticker Symbol, Web Source for data (google or yahoo), and Start 
+	and End Dates in the format yyyy/mm/dd. Leave "Please check this box if using local data"
+	unchecked.
+	1.2 To display outputs for given period:
+	User may click on buttons for:
+		Show Numerical Statistics to print numerical statistics
+		Show Summary to print the data count, mean, standard deviation, min, max, and 
+			quartiles 
+		Show Graphics to display time series plot of price and barplot of volume
+	Text outputs will be displayed in console.
+	Plots will be displayed in pop-up windows.
+	User click on points in plots generated to print the price or volume 
+	at that date position.
+	GUI customization: user may change background color of plots by clicking on corresponding color 
+	in legend of plots.
+2. Statistical Measures
+	2.1 For a stock:
+	Input Column Name (CASE SENSITIVE: Open, High, Low, Close, Volume) to see measures for 
+	and Period as a positive integer to generate statistical measures. 
+	2.2 To display outputs for given column and period:
+	Input which statistical measures (sma, std, boll, macd, daily_return, sharpe ratio) 
+	to generate by clicking the corresponding boxes on the GUI. Multiple selections can be 
+	made at once. Then click Show Measures to display results.
+3. Portfolio Management
+	3.1 For a portfolio:
+	Input start and end dates in yyyy/mm/dd format, list of stock ticker symbols separated by ',' 
+	and list of positions separated by ',' that consist of positions less than 1 and sum up to 1.
+	3.2 To display outputs for given ticker and position lists:
+	Click Show Analysis button. The results shown are results from simulating the combination
+	of stocks in the portfolio utilizing data from Yahoo! Finance and given 10000 as the
+	initial investment.
+4. To exit the program:
+	Press 'Safely Exit' button.
+
+D. Datasets and how to obtain them
+Real time stock data is imported from either Yahoo! Finance or Google Finance, as specified 
+by user input for Source on GUI, by using pandas remote data access (pandas.io.data).
+User can also input their own local csv files via GUI by clicking 'Browse Local File', as long 
+as the local file is exactly the same format as data imported from Yahoo! and Google Finance,
+with the following requirements:
+	1. Datetime as index
+	2. Column headers are case sensitive and must include: Open, High, Low, Close, Volume
+	3. Dataframe cannot be empty
+	4. Data from columns under the above headers must be floating-point numbers
+
+E. Dependencies required to run the program, and how to install them
+Python 2.7: Download from https://www.python.org/download/releases/2.7/
+Operations System: 
+	Program can be run on Linux and Windows operating systems.
+		Purchase Windows at http://windows.microsoft.com/ and follow installation instructions.
+		Download Ubuntu at http://www.ubuntu.com/download/desktop 
+	Program will crash if ran on MAC.
