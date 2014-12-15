@@ -23,7 +23,9 @@ def userfile_checkinput(string, start, end):
         if valid_empty == 0:
             valid_dates = dates_checkinput(start, end)
             valid_header = header_checkuser(string)
-            if valid_dates == valid_header == 0:
+            valid_dtype = dtype_checkuser(string, start, end)
+            valid_emptydf = emptydf_checkuser(string, start, end)
+            if valid_dates == valid_header == valid_dtype == valid_emptydf == 0:
                 df = pd.read_csv(string, index_col = 0).dropna()
                 df = df[start:end]
                 return 0
@@ -69,3 +71,33 @@ def header_checkuser(string):
         except:
             raise MissingHeader
 
+def emptydf_checkuser(string):
+    """
+    Checks if dataframe is empty
+    return 0 if not empty
+    raise Emptydf if empty
+    """
+    try:
+        df = pd.read_csv(string, index_col = 0).dropna()
+        if df.empty:
+            raise Emptydf
+        else:
+            return 0
+    except:
+        raise Emptydf
+     
+def dtype_checkuser(string, start, end):
+    """
+    Checks that index is datatime and data for needed columns are floating numbers
+    return 0 if valid
+    raise Baddtype if not valid
+    """
+    needed_headers = ['Open', 'High', 'Low', 'Close', 'Volume']
+    try:
+        df = pd.read_csv(string, index_col = 0, parse_dates = True, infer_datetime_format=True).dropna()
+        df = df[start:end]
+        for x in needed_headers:
+            df[x] = df[x].astype(float)
+        return 0
+    except:
+        raise Baddtype
