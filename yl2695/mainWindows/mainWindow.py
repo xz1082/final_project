@@ -456,6 +456,13 @@ class mainWindow():
             inputErrorLabel = Label(errorWindow, text="Sorry, we cannot read the datafile, please check again.")
             inputErrorLabel.pack()
 
+        except noneDataFrameError:
+            errorWindow = Toplevel()
+            errorWindow.geometry('{}x{}'.format(450, 30))
+            inputErrorLabel = Label(errorWindow, text="Sorry, there is no restaurant satisfying the criterions, please try again.")
+            inputErrorLabel.pack()
+
+
         except:
             errorWindow = Toplevel()
             errorWindow.geometry('{}x{}'.format(500, 30))
