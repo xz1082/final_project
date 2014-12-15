@@ -14,7 +14,7 @@ from subWindows.StateCheckinDistribution.CheckinDistributionFuncs import *
 
 class mainWindow():
     '''
-    set up a class for this application and set up four sub-windows of the main window
+    set up a class for this application and set up six sub-windows of the main window
     '''
 
     def __init__(self, top):
@@ -273,7 +273,7 @@ class mainWindow():
         self.stateEntry = StringVar()
 
         stateLabel = Label(self.checkinTimeDistributtonWindow, text="Please input the state whose overall restaurants' checkin numbers you want to see: ")
-        promptLabel = Label(self.checkinTimeDistributtonWindow, text="You can input the following states: WI, AZ, ON, EDH, MLN, KHL, NV")
+        promptLabel = Label(self.checkinTimeDistributtonWindow, text="You can input the following states: WI, AZ, ON, EDH, MLN, NV")
         statesEntry = Entry(self.checkinTimeDistributtonWindow, textvariable=self.stateEntry)
         stateLabel.place(relx=0.1, rely=0.25)
         promptLabel.place(relx=0.1, rely=0.3)
