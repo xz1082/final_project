@@ -38,7 +38,7 @@ def searchRestaurantByExpenses(state, price, num_top):
         raise num_topInputError('Wrong number of TOP. ')
 	
 	
-    select_restaurants = f[(f['state'] == state) & (f['attributes_Price Range'] <= target_price)]
+    select_restaurants = f[(f['state'] == state) & (f['attributes_Price Range'] == target_price)]
     sorted_restaurants = select_restaurants.sort(['stars','review_count','name'], ascending=False)
     sorted_restaurants['Price Range'] = sorted_restaurants['attributes_Price Range']
 
