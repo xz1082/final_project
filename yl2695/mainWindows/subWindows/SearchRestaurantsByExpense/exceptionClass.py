@@ -1,4 +1,4 @@
-# author: Wenying Liu(wl1207)
+# author: Wenying Liu(wl1207) and Yucheng Lu(yl2695)
 
 class stateInputError(Exception):
     
@@ -23,3 +23,10 @@ class num_topInputError(Exception):
     """
     
 	pass
+
+class noneDataFrameError(Exception):
+    '''
+    This exeption will raise when the dataframe user searches is none.
+    '''
+
+    pass

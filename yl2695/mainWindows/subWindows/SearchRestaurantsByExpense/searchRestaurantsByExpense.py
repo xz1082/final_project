@@ -2,7 +2,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-from exceptionClass import stateInputError, priceInputError, num_topInputError
+from exceptionClass import stateInputError, priceInputError, num_topInputError, noneDataFrameError
 
 
 try:
@@ -44,6 +44,8 @@ def searchRestaurantByExpenses(state, price, num_top):
 
     sorted_restaurants.dropna()
     sorted_restaurants = sorted_restaurants.set_index(['name'])
+    if sorted_restaurants.empty:
+        raise noneDataFrameError("The dataframe is null.")
     return sorted_restaurants[:num if num < 6 else 5][['city', 'Price Range', 'state', 'stars']]
 
 

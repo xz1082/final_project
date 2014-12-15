@@ -68,12 +68,13 @@ class mainWindow():
         # Initialize two labels to instruct the user to input.
         promptLabelOne = Label(self.nameSearchWindow, text='Input the name of the restaurant you hope to find:(For example: a)', fg='black')
         promptLabelTwo = Label(self.nameSearchWindow, text='If you want to search again, please press the clear button.')
-
+        promptLabelThree = Label(self.nameSearchWindow, text="For the size of the window, we'll show 15 restaurants at most.")
         # Initialize the entry fot user inputs
         inputNameEntry = Entry(self.nameSearchWindow, textvariable=self.ment)
 
-        promptLabelOne.place(relx=0.1, rely=0.25)
-        promptLabelTwo.place(relx=0.1, rely=0.3)
+        promptLabelOne.place(relx=0.1, rely=0.20)
+        promptLabelTwo.place(relx=0.1, rely=0.25)
+        promptLabelThree.place(relx=0.1, rely=0.3)
         inputNameEntry.pack()
         inputNameEntry.place(relx=0.1, rely=0.35)
 
@@ -106,18 +107,20 @@ class mainWindow():
 
         # set up some prompt labels
         stateLabel = Label(self.popularRestaurantsWindow, text='Please input the state whose popular restaurants you want to see: ')
-        promptLabel = Label(self.popularRestaurantsWindow, text="(For Example:'WI', 'AZ', 'NV', 'CA', 'ON', 'EDH', 'ELN', 'MLN', 'NY', 'KHL')")
+        promptLabelOne = Label(self.popularRestaurantsWindow, text="(For Example:'WI', 'AZ', 'NV', 'CA', 'ON', 'EDH', 'ELN', 'MLN', 'NY', 'KHL')")
         numLabel = Label(self.popularRestaurantsWindow, text="Please input the numbers of top restaurants you want to see:(For Example: 5)")
-
+        promptLabelTwo = Label(self.popularRestaurantsWindow, text="For the size of the window, we'll show 11 restaurants at most.")
         # set up the necessary entries for user's inputs
         stateEntry = Entry(self.popularRestaurantsWindow, textvariable=self.stateMentPopularWindow)
         numEntry = Entry(self.popularRestaurantsWindow, textvariable=self.numMentPopularWindow)
 
-        stateLabel.place(relx=0.10, rely=0.20)
-        promptLabel.place(relx=0.1, rely=0.25)
-        numLabel.place(relx=0.10, rely=0.35)
+        stateLabel.place(relx=0.10, rely=0.15)
+        promptLabelOne.place(relx=0.1, rely=0.20)
+
+        numLabel.place(relx=0.10, rely=0.30)
+        promptLabelTwo.place(relx=0.10, rely=0.35)
         stateEntry.pack()
-        stateEntry.place(relx=0.10, rely=0.30)
+        stateEntry.place(relx=0.10, rely=0.25)
         numEntry.pack()
         numEntry.place(relx=0.10, rely=0.40)
 
@@ -167,39 +170,41 @@ class mainWindow():
         promptLabel = Label(self.expenseSearchWindow, text="(For Example:'WI', 'AZ', 'NV', 'CA', 'ON', 'EDH', 'ELN', 'MLN', 'NY', 'KHL')")
         numLabel = Label(self.expenseSearchWindow, text="Please input the numbers of top restaurants you want to see:(For Example: 5)")
         priceRangeLabel = Label(self.expenseSearchWindow, text="Please input the price range of restaurants you want to find:(For Example: 1)")
-
+        promptLabelSix = Label(self.expenseSearchWindow, text="For the size of the window, we'll show 5 restaurants at most.")
         # initialize three entries for user inputs
         stateEntry = Entry(self.expenseSearchWindow, textvariable=self.stateMent)
         numEntry = Entry(self.expenseSearchWindow, textvariable=self.numMent)
         priceRangeEntry = Entry(self.expenseSearchWindow, textvariable=self.priceRangeMent)
 
-        stateLabel.place(relx=0.10, rely=0.33)
-        promptLabel.place(relx=0.1, rely=0.38)
+        stateLabel.place(relx=0.10, rely=0.30)
+        promptLabel.place(relx=0.1, rely=0.35)
         stateEntry.pack()
-        stateEntry.place(relx=0.10, rely=0.43)
+        stateEntry.place(relx=0.10, rely=0.40)
 
-        priceRangeLabel.place(relx=0.1, rely=0.48)
+        priceRangeLabel.place(relx=0.1, rely=0.45)
         priceRangeEntry.pack()
-        priceRangeEntry.place(relx=0.1, rely=0.53)
+        priceRangeEntry.place(relx=0.1, rely=0.50)
 
-        numLabel.place(relx=0.10, rely=0.58)
+        numLabel.place(relx=0.10, rely=0.55)
+
+        promptLabelSix.place(relx=0.1, rely=0.6)
         numEntry.pack()
-        numEntry.place(relx=0.10, rely=0.63)
+        numEntry.place(relx=0.10, rely=0.65)
 
         # initialize the show price range button
         showPriceRangeRestaurantButton = Button(self.expenseSearchWindow, text='Show Restaurant', command=self.showPriceRangeExpenseWindow)
         showPriceRangeRestaurantButton.pack()
-        showPriceRangeRestaurantButton.place(relx=0.1, rely=0.69)
+        showPriceRangeRestaurantButton.place(relx=0.1, rely=0.70)
 
         # initialize the function for show price range button
         plotButton = Button(self.expenseSearchWindow, text='plot', command=self.plotRestaurantRegionExpenseWindow)
         plotButton.pack()
-        plotButton.place(relx=0.65, rely=0.69)
+        plotButton.place(relx=0.65, rely=0.70)
 
         # initialize the clear button
         clearButton = Button(self.expenseSearchWindow, text='Clear', command=self.new_canvas_expense_window)
         clearButton.pack()
-        clearButton.place(relx=0.4, rely=0.69)
+        clearButton.place(relx=0.4, rely=0.70)
 
 
     def stateStarDistributionWindow(self):
@@ -487,6 +492,12 @@ class mainWindow():
             errorWindow = Toplevel()
             errorWindow.geometry('{}x{}'.format(400, 30))
             inputErrorLabel = Label(errorWindow, text="Sorry, your input PRICE RANGE is wrong, please try again.")
+            inputErrorLabel.pack()
+
+        except noneDataFrameError:
+            errorWindow = Toplevel()
+            errorWindow.geometry('{}x{}'.format(450, 30))
+            inputErrorLabel = Label(errorWindow, text="Sorry, there is no restaurant satisfying the criterions, please try again.")
             inputErrorLabel.pack()
 
         # catch IO Exception
