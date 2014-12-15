@@ -21,16 +21,20 @@ def plot_barchart(DF):
   '''
 
   fig = plt.figure()
+  fig.set_size_inches(10,8)
   ax = fig.add_subplot(111)
 
   plot_data = DF['Borough'].value_counts() 
   row_labels = list(plot_data.index)
+  row = np.arange(len(row_labels))
 
-  plot_data.plot(plot_data,kind='bar',figsize = (10,10), alpha = 0.5)
+  ax.bar(row,plot_data, width = 0.8,alpha = 0.5)
 
   ax.set_ylabel('Count of Wifi Spots')
-  xtickNames = ax.set_xticklabels(row_labels)
-  plt.setp(xtickNames, rotation=45, fontsize=12)
+  pos = row + 0.4
+  ax.set_xticks(pos)
+  ax.set_xticklabels(row_labels)
+
   ax.grid(False)
   ax.set_title('Count of Free WiFi Spots by Borough', fontsize = 14)
   
