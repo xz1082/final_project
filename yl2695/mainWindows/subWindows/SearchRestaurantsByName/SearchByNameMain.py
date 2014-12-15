@@ -4,7 +4,7 @@ import pandas as pd
 from SearchByNameFuncs import *
 
 # Load the data set
-data = pd.read_csv('../yelp_restaurant_only_dataset.csv')
+data = pd.read_csv('yelp_restaurant_only_dataset.csv')
 
 
 def main():
