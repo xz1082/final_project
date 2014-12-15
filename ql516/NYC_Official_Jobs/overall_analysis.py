@@ -24,21 +24,7 @@ def overall_analysis(df):
     """
 
     df = Job_data(df)
-
-    print "================================  NYC Official Job Analysis  =============================="
-    print ""
-    print "                 You can choose to learn more about the whole dataset: "
-    print "              <a>  :  pie plot show the percentage of degree requirement"
-    print "              <b>  :  bar plot show the most hiring agency"
-    print "              <c>  :  bar plot show the most demanded positions"
-    print "              <d>  :  line plot of the number of job vs date"
-    print "              <e>  :  scatter plot show the relationship b/t level and salary"
-    print "              <f>  :  get a preview about the whole dataset"
-    print "              <g>  :  search for a keyword about jobs you interested in"
-    print "              <q>  :  quit the program"
-    print ""
-    print "==========================================================================================="
-
+    print_menu()
 
     while 1:
         try:
@@ -56,14 +42,42 @@ def overall_analysis(df):
             if key == 'f':
                 df.preview_data()
             if key == 'g':
-                job_list = search_keyword(df.data)
+                while 1:
+                    try:
+                        job_list, keyword = search_keyword(df.data)
+                        break
+                    except no_related_jobs_exception:
+                        print "Sorry, we cannot find jobs related to your keyword, please try another one, " \
+                              "or you can input 'p' to go back: \n "
+                if keyword == 'back':
+                    print_menu()
+                    continue
                 break
         except wrong_option_exception:
             print "invalid option, please select from [a,b,c,d,e,f,g] or input 'q' to quit: "
-        except no_related_jobs_exception:
-            print "Sorry, we cannot find jobs related to your keyword, please try another one, " \
-                  "or you can input 'p' to go back: "
-    return job_list
+    return job_list, keyword
+
+
+
+def print_menu():
+    """
+    print the overall analysis menu
+
+    """
+    print "================================  NYC Official Job Analysis  =============================="
+    print ""
+    print "                 You can choose to learn more about the whole dataset: "
+    print "              <a>  :  pie plot show the percentage of degree requirement"
+    print "              <b>  :  bar plot show the most hiring agency"
+    print "              <c>  :  bar plot show the most demanded positions"
+    print "              <d>  :  line plot of the number of job vs date"
+    print "              <e>  :  scatter plot show the relationship b/t level and salary"
+    print "              <f>  :  get a preview about the whole dataset"
+    print "              <g>  :  search for a keyword about jobs you interested in"
+    print "              <q>  :  quit the program"
+    print ""
+    print "==========================================================================================="
+
 
 
 def option_input():
@@ -100,6 +114,8 @@ def search_keyword(df):
 
     """
     keyword = raw_input("please input a keyword of the job you interested in: \n")
+    if keyword == 'p':
+        return 'stop', 'back'
     job_list = filter_the_job(df, keyword)
     if len(job_list) == 0:
         raise no_related_jobs_exception
