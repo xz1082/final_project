@@ -1,0 +1,11 @@
+*************************************************
+*    NYPD Motor Vehicle Collisions Visualizer   
+*************************************************
+*	   Author: Jiayi Lu, Lei Lu, Minzi Ji       
+*************************************************
+Following Exploratory Analysis Are Provided:
+1.SEE THE SUMMARY CHART ABOUT THE NYPD COLLISION DATA IN AN SPECIFIC PERIOD OF TIME
+2.PLOT A BAR GRAPH SHOWING THE COMPOSITION OF COLLISIONS BY TYPE OF VECHICLES
+3.SEE THE TOP 5 CONTRIBUTING FACTORS OF COLLISIONS
+4.REGRESSION ANALYSIS FOR THE FATALITY RATES AGAINST NUMBER OF INVOLVED VEHICLES IN A COLLISION
+Please Press 1-4:
